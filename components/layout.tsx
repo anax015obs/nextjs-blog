@@ -4,10 +4,16 @@ import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
-const name = 'Min "fucking" Su';
+const name = "Min 'F' su";
 export const siteTitle = "Next.js Sample Website";
 
-export default function Layout({ children, home }) {
+export default function Layout({
+  children,
+  home,
+}: {
+  children: React.ReactNode;
+  home?: boolean;
+}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +26,7 @@ export default function Layout({ children, home }) {
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(
             siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
+          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
@@ -33,6 +39,12 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         {home ? (
           <>
+            {/* Instead of optimizing images at build time, Next.js optimizes images on-demand, as users request them.
+       Unlike static site generators and static-only solutions, your build times aren't increased, whether shipping 10 images or 10 million images.
+       Images are lazy loaded by default. That means your page speed isn't penalized for images outside the viewport.
+       Images load as they are scrolled into viewport.
+       Images are always rendered in such a way as to avoid Cumulative Layout Shift, a Core Web Vital that Google is going to use in search ranking.
+       */}
             <Image
               priority
               src="/images/profile.jpeg"
